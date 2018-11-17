@@ -1,6 +1,6 @@
 package ohtu;
 
-public class Submission {
+public class Submission implements Comparable<Submission> {
     
     private int week;
     private int hours;
@@ -40,7 +40,12 @@ public class Submission {
     }
 
     @Override
-    public String toString() {
+    public int compareTo(Submission submission) {
+        return Integer.compare(this.week, submission.week);
+    }
+
+    // excercisesTotal tarkoittaa montako tehtävää viikolla oli yhteensä tehtävänä.
+    public String toString(int excercisesTotal) {
         String exercisesPrint = "";
         
         int i = 0;
@@ -52,11 +57,9 @@ public class Submission {
             ++i;
         }
         
-        return  course + 
-                ", viikko " + week + 
-                " tehtyj\u00e4 teht\u00e4vi\u00e4 yhteens\u00e4 " + exercises.length + 
-                " aikaa kului " + hours + 
-                " tehdyt teht\u00e4v\u00e4t: " + exercisesPrint;
+        return  "viikko " + week + ":\n" + 
+                " tehtyj\u00e4 teht\u00e4vi\u00e4 " + exercises.length + "/" + excercisesTotal + 
+                " aikaa kului " + hours + " tehdyt teht\u00e4v\u00e4t: " + exercisesPrint;
     }
     
 }
